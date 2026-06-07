@@ -1,0 +1,695 @@
+/*
+ * BHRC Design Fix — Full Rebuild
+ * Mobile-first. Vertical portrait default. Expands for landscape/tablet/desktop.
+ * Fixes: white background, duplicate titles, header repeat, missing images, sterile layout.
+ * Fonts: Cormorant Garamond (headings) + Lora (body) — loaded via @font-face from fonts.gstatic.com
+ * Palette: Parchment #F5EFE0 | Amber #C4762A | Navy #1A1F2E | Sage #7A9977
+ */
+
+/* ── GOOGLE FONTS @font-face (loaded from fonts.gstatic.com, works on all devices) ─── */
+/* Cormorant Garamond — 10 variants */
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 300; font-display: swap; src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7elI-Yem5.woff2) format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7elI-Yem5.woff2) format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7elI-Yem5.woff2) format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7elI-Yem5.woff2) format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7elI-Yem5.woff2) format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 300; font-display: swap; src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjz0Iz8_Nd_Jgrk.woff2) format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjz0Iz8_Nd_Jgrk.woff2) format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjz0Iz8_Nd_Jgrk.woff2) format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjz0Iz8_Nd_Jgrk.woff2) format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjz0Iz8_Nd_Jgrk.woff2) format('woff2'); }
+
+/* Lora — 8 variants */
+@font-face { font-family: 'Lora'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/lora/v37/0QI6MX1D_JOuGQbT0gvTJPa787weuyJDmKxemMeZ.woff2) format('woff2'); }
+@font-face { font-family: 'Lora'; font-style: normal; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/lora/v37/0QI6MX1D_JOuGQbT0gvTJPa787wsuyJDmKxemMeZ.woff2) format('woff2'); }
+@font-face { font-family: 'Lora'; font-style: normal; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/lora/v37/0QI6MX1D_JOuGQbT0gvTJPa787zAvCJDmKxemMeZ.woff2) format('woff2'); }
+@font-face { font-family: 'Lora'; font-style: normal; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/lora/v37/0QI6MX1D_JOuGQbT0gvTJPa787z5vCJDmKxemMeZ.woff2) format('woff2'); }
+@font-face { font-family: 'Lora'; font-style: italic; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/lora/v37/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFkq18ndeZzZ0.woff2) format('woff2'); }
+@font-face { font-family: 'Lora'; font-style: italic; font-weight: 500; font-display: swap; src: url(https://fonts.gstatic.com/s/lora/v37/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-PgFkq18ndeZzZ0.woff2) format('woff2'); }
+@font-face { font-family: 'Lora'; font-style: italic; font-weight: 600; font-display: swap; src: url(https://fonts.gstatic.com/s/lora/v37/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-BQCkq18ndeZzZ0.woff2) format('woff2'); }
+@font-face { font-family: 'Lora'; font-style: italic; font-weight: 700; font-display: swap; src: url(https://fonts.gstatic.com/s/lora/v37/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-C0Ckq18ndeZzZ0.woff2) format('woff2'); }
+
+/* ── GLOBAL RESET + BASE ──────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* FORCE parchment everywhere — overrides any theme white */
+html,
+body,
+.site,
+.site-content,
+#page,
+#content,
+.wp-site-blocks,
+main,
+.main-content,
+article,
+.hentry,
+.entry-content {
+  background-color: #F5EFE0 !important;
+  color: #2C2416;
+}
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Paper grain texture — warm, not sterile */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 1;
+}
+
+/* ── TYPOGRAPHY ───────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6,
+.wp-block-post-title,
+.entry-title,
+.page-title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600;
+  color: #1A1F2E !important;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+h1, .entry-title.h1 { font-size: clamp(2rem, 8vw, 3.6rem); }
+h2                  { font-size: clamp(1.5rem, 5vw, 2.4rem); }
+h3                  { font-size: clamp(1.2rem, 4vw, 1.8rem); }
+
+p { margin-bottom: 1.4em; }
+
+a {
+  color: #C4762A;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+a:hover { color: #A35F1F; }
+
+/* ── FIX: DUPLICATE TITLES ────────────────────────────────── */
+/*
+ * WordPress + most themes show title twice:
+ * (1) a small "page header" title above the content
+ * (2) the large .entry-title inside the article
+ * Keep the large one, hide the redundant small one.
+ */
+.page-header .page-title,
+.entry-header .entry-title + .entry-title,
+.post-header + .entry-title,
+.wp-block-post-title ~ h1.entry-title,
+h1.entry-title ~ .wp-block-post-title,
+.singular .page-header,
+.single .page-header .page-title:not(.entry-title),
+.blog-header .page-title,
+.archive-description + h1,
+/* Catch common theme-specific double-title patterns */
+.ast-archive-description .ast-archive-title,
+.ast-single-post-order .entry-header + .entry-header,
+.site-main > .page-header,
+.entry-header ~ .entry-title {
+  display: none !important;
+}
+
+/* For block themes using wp-block-post-title — show only once */
+.wp-block-post-title:not(:first-of-type) {
+  display: none !important;
+}
+
+/* ── FIX: DUPLICATE SITE NAME IN HEADER ───────────────────── */
+/*
+ * "Be Happy Retired" appearing twice: once as logo, once as a
+ * secondary heading below. Hide the redundant one.
+ */
+.site-description,
+.site-branding + .site-title,
+header .wp-block-site-title + .wp-block-site-tagline,
+.wp-block-group > .wp-block-site-title ~ .wp-block-site-title,
+/* If theme shows site title AGAIN below the logo */
+.wp-block-template-part .wp-block-site-title ~ p.site-title {
+  display: none !important;
+}
+
+/* Ensure site title shows only in header, not doubled via blocks */
+.wp-block-site-title a,
+.site-title a,
+.custom-logo-link {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: #C4762A !important;
+  text-decoration: none !important;
+  letter-spacing: -0.02em;
+}
+
+/* ── HEADER — MOBILE-FIRST ────────────────────────────────── */
+.site-header,
+header.wp-block-template-part,
+#masthead,
+.wp-block-group.is-layout-flex.has-background[style*="background"] {
+  background-color: #1A1F2E !important;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 14px 20px !important;
+  box-shadow: 0 2px 12px rgba(26,31,46,0.25);
+}
+
+/* Header inner layout: logo left, nav right — single row on mobile */
+.site-header .site-branding,
+.wp-block-template-part > .wp-block-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Nav links in header */
+.main-navigation,
+.wp-block-navigation {
+  background: transparent !important;
+}
+
+.main-navigation a,
+.wp-block-navigation a,
+.wp-block-navigation__submenu-icon {
+  color: #FDFAF5 !important;
+  font-family: 'Lora', serif !important;
+  font-size: 14px !important;
+  text-decoration: none !important;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+.main-navigation a:hover,
+.wp-block-navigation a:hover { opacity: 1; }
+
+/* CTA in nav — hardcoded hex: WordPress strips var() from global-styles CSS */
+.wp-block-navigation-item.nav-cta .wp-block-navigation-item__content,
+.wp-block-navigation-item.nav-cta > a,
+li.nav-cta a,
+.wp-block-navigation .wp-block-navigation-item:last-child > a:not(.wp-block-navigation-submenu__toggle) {
+  background-color: #C4762A !important;
+  color: #FDFAF5 !important;
+  padding: 8px 18px !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+}
+.wp-block-navigation-item.nav-cta .wp-block-navigation-item__content:hover,
+li.nav-cta a:hover {
+  background-color: #A35F1F !important;
+}
+
+/* Dropdown submenu styling — hardcoded */
+.wp-block-navigation__submenu-container {
+  background-color: #1A1F2E !important;
+  border: 1px solid rgba(196,118,42,0.25) !important;
+  border-radius: 4px !important;
+  padding: 8px 0 !important;
+  min-width: 200px !important;
+  box-shadow: 0 8px 24px rgba(26,31,46,0.3) !important;
+}
+.wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+  color: #FDFAF5 !important;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+  opacity: 0.85;
+  transition: all 0.15s;
+}
+.wp-block-navigation__submenu-container .wp-block-navigation-item__content:hover {
+  background-color: rgba(196,118,42,0.15) !important;
+  opacity: 1;
+}
+
+/* Mobile hamburger — ensure it appears */
+.wp-block-navigation__responsive-container-open,
+button.wp-block-navigation__responsive-container-open {
+  color: #FDFAF5 !important;
+  display: flex !important;
+}
+
+/* Mobile nav overlay */
+.wp-block-navigation__responsive-container.is-menu-open {
+  background-color: #1A1F2E !important;
+}
+.wp-block-navigation__responsive-container.is-menu-open a {
+  color: #FDFAF5 !important;
+  font-size: 20px !important;
+}
+
+/* ── HERO SECTION — MOBILE FIRST ─────────────────────────── */
+.hero-section,
+.wp-block-group.hero-section,
+.page-template-default .wp-block-group:first-child {
+  padding: 56px 24px 48px;
+  text-align: center;
+  background: #F5EFE0 !important;
+}
+
+.hero-heading,
+.hero-section h1 {
+  font-size: clamp(2.4rem, 9vw, 4rem) !important;
+  font-weight: 300 !important;
+  font-style: italic;
+  color: #1A1F2E !important;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.hero-subheading,
+.hero-section p:first-of-type {
+  font-size: clamp(1rem, 3.5vw, 1.2rem);
+  color: #6B5D4F;
+  font-style: italic;
+  max-width: 560px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+
+/* Amber accent rule under hero heading */
+.hero-section h1::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: #C4762A;
+  margin: 18px auto 0;
+  border-radius: 2px;
+}
+
+/* ── BUTTONS ──────────────────────────────────────────────── */
+.wp-block-button__link,
+.wp-block-button__link:visited,
+.btn-primary-amber .wp-block-button__link {
+  background: #C4762A !important;
+  color: #FDFAF5 !important;
+  font-family: 'Lora', serif !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  padding: 14px 28px !important;
+  border-radius: 3px !important;
+  border: none !important;
+  text-decoration: none !important;
+  display: inline-block;
+  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 0.02em;
+}
+.wp-block-button__link:hover {
+  background: #A35F1F !important;
+  transform: translateY(-1px);
+}
+
+/* Full-width CTA on mobile */
+@media (max-width: 480px) {
+  .wp-block-button__link,
+  .hero-section .wp-block-button__link {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+/* ── FEATURED IMAGES — FORCE DISPLAY ─────────────────────── */
+.post-thumbnail,
+.wp-post-image,
+.entry-featured-image,
+.wp-block-post-featured-image,
+.wp-block-post-featured-image img,
+.post-thumbnail img,
+figure.wp-block-image img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover;
+  border-radius: 6px 6px 0 0;
+}
+
+/* Featured image on single posts */
+.single .wp-block-post-featured-image,
+.single .post-thumbnail {
+  margin: 0 0 32px 0 !important;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(26,31,46,0.12);
+}
+
+.single .wp-block-post-featured-image img {
+  aspect-ratio: 16/7;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* ── POST CARDS — MOBILE FIRST ────────────────────────────── */
+.wp-block-latest-posts,
+.wp-block-query,
+.posts-grid {
+  display: grid !important;
+  grid-template-columns: 1fr; /* single column on mobile */
+  gap: 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.wp-block-latest-posts__list-item,
+.wp-block-post {
+  background: #FDFAF5;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(26,31,46,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.wp-block-latest-posts__list-item:hover,
+.wp-block-post:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(26,31,46,0.12);
+}
+
+/* Post card image */
+.wp-block-post .wp-block-post-featured-image img,
+.wp-block-latest-posts__featured-image img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+
+/* Post card content area */
+.wp-block-latest-posts__list-item a,
+.wp-block-post-title a {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  color: #1A1F2E !important;
+  text-decoration: none !important;
+  line-height: 1.3;
+  display: block;
+  padding: 18px 18px 4px;
+}
+.wp-block-post-title a:hover { color: #C4762A !important; }
+
+/* Category tag pill */
+.wp-block-post-terms a,
+.cat-links a,
+.post-tag {
+  display: inline-block;
+  font-family: 'Lora', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  color: #7A9977 !important;
+  text-decoration: none !important;
+  padding: 0 18px 4px;
+}
+
+.wp-block-post-excerpt__excerpt {
+  font-size: 15px;
+  color: #6B5D4F;
+  line-height: 1.65;
+  padding: 0 18px 18px;
+  margin: 0;
+}
+
+/* ── SINGLE POST CONTENT ──────────────────────────────────── */
+.entry-content,
+.wp-block-post-content {
+  font-size: 17px;
+  line-height: 1.85;
+  color: #2C2416;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.entry-content h2,
+.wp-block-post-content h2 {
+  margin-top: 2em;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #DDD3BE;
+}
+
+/* Pull-quote / intro paragraph styling */
+.post-intro,
+.entry-content p:first-of-type,
+.wp-block-post-content p.has-large-font-size {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #6B5D4F;
+  border-left: 3px solid #C4762A;
+  padding-left: 20px;
+  margin-left: -23px;
+}
+
+/* Separator */
+.wp-block-separator {
+  border: none !important;
+  border-top: 1px solid #DDD3BE !important;
+  max-width: 120px;
+  margin: 48px auto;
+  opacity: 1 !important;
+}
+
+/* CTA block at end of posts */
+.post-cta-block,
+.wp-block-group.post-cta-block {
+  background: rgba(196,118,42,0.07);
+  border: 1px solid #DDD3BE;
+  border-left: 3px solid #C4762A;
+  border-radius: 0 6px 6px 0;
+  padding: 22px 24px;
+  margin-top: 48px;
+}
+
+/* ── NEWSLETTER SECTION ───────────────────────────────────── */
+.newsletter-section,
+.wp-block-group.newsletter-section,
+.email-section {
+  background: #1A1F2E !important;
+  color: #FDFAF5;
+  padding: 56px 24px;
+  text-align: center;
+}
+.newsletter-section h2,
+.newsletter-section h3 {
+  color: #FDFAF5 !important;
+  font-size: clamp(1.6rem, 5vw, 2.2rem) !important;
+}
+.newsletter-section p { color: rgba(253,250,245,0.85); }
+
+/* Kit.com form styling inside newsletter section */
+.newsletter-section .formkit-form,
+.newsletter-section input[type="email"],
+.newsletter-section input[type="text"] {
+  border-radius: 3px;
+  border: none;
+  padding: 12px 16px;
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* ── ABOUT SECTION ────────────────────────────────────────── */
+.about-section,
+.wp-block-group.about-snippet {
+  background: #EDE5D0 !important;
+  padding: 56px 24px;
+}
+
+/* ── CONTENT SECTIONS ALTERNATING BACKGROUND ─────────────── */
+.section-wrap,
+.wp-block-group:nth-child(even):not(.hero-section):not(.newsletter-section) {
+  background: #EDE5D0 !important;
+}
+
+/* ── PAGE SECTIONS ────────────────────────────────────────── */
+.page-hero,
+.wp-block-group.page-hero {
+  padding: 56px 24px 40px;
+  background: #F5EFE0 !important;
+}
+
+.page-lead, .page-intro {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #6B5D4F;
+  border-left: 3px solid #C4762A;
+  padding-left: 20px;
+  margin-bottom: 32px;
+}
+
+/* Pillar blocks — About page */
+.pillar-block {
+  border-left: 3px solid #C4762A;
+  padding: 4px 0 4px 20px;
+  margin-bottom: 28px;
+}
+.pillar-block h3 { color: #C4762A !important; }
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+.site-footer,
+#colophon,
+footer.wp-block-template-part {
+  background: #1A1F2E !important;
+  color: rgba(253,250,245,0.6);
+  padding: 40px 24px;
+  text-align: center;
+  font-size: 13px;
+}
+.site-footer a,
+footer.wp-block-template-part a {
+  color: rgba(253,250,245,0.6) !important;
+  text-decoration: none;
+}
+.site-footer a:hover,
+footer.wp-block-template-part a:hover {
+  color: #E8A45A !important;
+}
+.site-footer .wp-block-site-title a,
+footer .footer-logo {
+  color: #C4762A !important;
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+
+/* ── SIDEBAR ──────────────────────────────────────────────── */
+.widget-area,
+#secondary {
+  background: #F5EFE0 !important;
+}
+.widget {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #DDD3BE;
+}
+.widget-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: #1A1F2E;
+  margin-bottom: 16px;
+}
+
+/* ── RESPONSIVE: TABLET / LANDSCAPE ─────────────────────── */
+@media (min-width: 600px) {
+  body { font-size: 18px; }
+
+  .wp-block-latest-posts,
+  .wp-block-query,
+  .posts-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .entry-content,
+  .wp-block-post-content {
+    padding: 0 32px;
+  }
+
+  .hero-section {
+    padding: 72px 40px 64px;
+  }
+}
+
+/* ── RESPONSIVE: DESKTOP ─────────────────────────────────── */
+@media (min-width: 960px) {
+  .wp-block-latest-posts,
+  .wp-block-query,
+  .posts-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .site-header,
+  header.wp-block-template-part,
+  #masthead {
+    padding: 16px 48px !important;
+  }
+
+  .entry-content,
+  .wp-block-post-content {
+    font-size: 19px;
+    padding: 0;
+  }
+
+  .hero-section { padding: 96px 48px 80px; }
+  .newsletter-section { padding: 80px 48px; }
+}
+
+/* ── CONTENT MAX WIDTH ───────────────────────────────────── */
+.wp-block-group__inner-container,
+.wp-block-columns,
+.site-main > *,
+.wp-block-query,
+.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  width: 100%;
+}
+
+/* ── PAPER AEROPLANE ACCENT — HERO ───────────────────────── */
+/* Subtle decorative element echoing brand mark */
+.hero-section::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Cpath d='M2 18 L34 4 L22 32 L17 22 Z' fill='none' stroke='%23C4762A' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M17 22 L22 32 L22 22 Z' fill='%23C4762A' opacity='0.3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.7;
+}
+
+/* ── READING PROGRESS ACCENT ─────────────────────────────── */
+.single .site-header::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(to right, #C4762A var(--scroll, 0%), transparent 0);
+}
+
+/* ── BLOCKQUOTES ─────────────────────────────────────────── */
+blockquote {
+  border-left: 3px solid #C4762A;
+  margin: 2em 0;
+  padding: 0.5em 0 0.5em 24px;
+  font-style: italic;
+  color: #6B5D4F;
+  font-size: 1.1em;
+}
+
+/* ── CLEAN UP ADMIN BAR SPACING ─────────────────────────── */
+.admin-bar .site-header,
+.admin-bar header.wp-block-template-part {
+  top: 32px !important;
+}
+@media (max-width: 782px) {
+  .admin-bar .site-header,
+  .admin-bar header.wp-block-template-part {
+    top: 46px !important;
+  }
+}
+
+/* ── PAGE REFERENCE IDS (top-right, subtle) ─────────────────── */
+body.page-id-8::before,body.page-id-11::before,body.page-id-10::before,body.page-id-7::before,body.page-id-9::before,body.page-id-12::before,body.page-id-13::before,body.page-id-14::before,body.page-id-15::before,body.postid-44::before,body.postid-43::before,body.postid-42::before,body.postid-41::before,body.postid-40::before{position:fixed;top:6px;right:12px;font-size:10px;font-family:monospace;color:rgba(128,128,128,0.5);z-index:99999;pointer-events:none;letter-spacing:0.5px}
+body.admin-bar.page-id-8::before,body.admin-bar.page-id-11::before,body.admin-bar.page-id-10::before,body.admin-bar.page-id-7::before,body.admin-bar.page-id-9::before,body.admin-bar.page-id-12::before,body.admin-bar.page-id-13::before,body.admin-bar.page-id-14::before,body.admin-bar.page-id-15::before,body.admin-bar.postid-44::before,body.admin-bar.postid-43::before,body.admin-bar.postid-42::before,body.admin-bar.postid-41::before,body.admin-bar.postid-40::before{top:38px}
+body.page-id-8::before{content:"BHR-H1"}body.page-id-11::before{content:"BHR-A1"}body.page-id-10::before{content:"BHR-A2"}body.page-id-7::before{content:"BHR-B1"}body.page-id-9::before{content:"BHR-G1"}body.page-id-12::before{content:"BHR-P1"}body.page-id-13::before{content:"BHR-R1"}body.page-id-14::before{content:"BHR-C1"}body.page-id-15::before{content:"BHR-T1"}body.postid-44::before{content:"BHR-X1"}body.postid-43::before{content:"BHR-X2"}body.postid-42::before{content:"BHR-X3"}body.postid-41::before{content:"BHR-X4"}body.postid-40::before{content:"BHR-X5"}

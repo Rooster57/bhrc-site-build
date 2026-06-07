@@ -1,0 +1,14 @@
+# Credentials & secrets
+*.env
+*credentials*
+*api-key*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS files
+Thumbs.db
+.DS_Store
+Desktop.ini
