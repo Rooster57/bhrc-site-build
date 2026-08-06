@@ -18,7 +18,7 @@ Every content file follows this structure:
 ```
 ---
 title: "Post Title Here"
-platform: substack | bhrc-blog | linkedin | facebook
+platform: bhrc-blog | substack
 word_count: 1050
 seo_keywords: keyword1, keyword2, keyword3
 category: Emotional Wellness | Joyful Living | Retirement

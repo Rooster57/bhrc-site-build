@@ -1,12 +1,13 @@
 ---
 title: "Bun Rieu and the Coconut Husk"
-platform: facebook
+platform: bhrc-blog
 word_count: 147
-seo_keywords: retirement joy, small moments, Vung Tau, senior living
+seo_keywords: retirement small joys, senior living Vung Tau, finding wonder in ordinary days, emotional wellness retirement
 category: Joyful Living
 author: Farook
 date: 2026-08-06
 status: ready
+substack_seed: true
 ---
 
 Bun Rieu found a coconut husk this morning.
