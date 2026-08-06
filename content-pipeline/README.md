@@ -20,11 +20,14 @@ Every content file follows this structure:
 title: "Post Title Here"
 platform: bhrc-blog | substack
 word_count: 1050
+slug: post-url-slug-here
 seo_keywords: keyword1, keyword2, keyword3
+featured_image: "warm morning light, Vung Tau beach, small dog curiosity"
 category: Emotional Wellness | Joyful Living | Retirement
 author: Farook
 date: YYYY-MM-DD
 status: ready
+substack_seed: true | false
 ---
 
 [Full post content in Markdown]

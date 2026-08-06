@@ -2,7 +2,9 @@
 title: "Bun Rieu and the Coconut Husk"
 platform: bhrc-blog
 word_count: 147
+slug: bun-rieu-coconut-husk
 seo_keywords: retirement small joys, senior living Vung Tau, finding wonder in ordinary days, emotional wellness retirement
+featured_image: "warm morning light on Vung Tau beach path, small brown poodle sniffing a coconut husk, quiet joy"
 category: Joyful Living
 author: Farook
 date: 2026-08-06
